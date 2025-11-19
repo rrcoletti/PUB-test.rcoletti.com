@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br"
+  x-data="{ 
+    darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches, 
+    showForm: false,
+    showText: false,
+  }"
+  x-bind:class="{ 'dark': darkMode === true, 'light': darkMode === false }"
+>
+  <head>
+    <title>Test</title>
+
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script type="module" crossorigin src="/assets/index-ySq4QtqN.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dsz2SwXq.css">
+  </head>
+
+  <body class="grid min-h-screen min-w-screen place-items-center-safe">
+    <div
+      class="relative h-11/12 w-11/12 sm:h-10/12 sm:w-9/12 xl:h-9/12 xl:w-8/12"
+    >
+      <!-- dark mode icons -->
+      <div class="flex absolute z-50 top-3 right-3 sm:right-0 sm:-top-8">
+        <template x-if="true">
+          <a
+            @click="darkMode = !darkMode"
+            x-show="darkMode"
+          >
+            <svg
+              id="img-sun"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-.23 72Q400-288 344-344.23q-56-56.22-56-136Q288-560 344.23-616q56.22-56 136-56Q560-672 616-615.77q56 56.22 56 136Q672-400 615.77-344q-56.22 56-136 56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z"
+              /></svg
+          ></a>
+        </template>
+
+        <template x-if="true">
+          <a
+            @click="darkMode = !darkMode"
+            x-show="!darkMode"
+          >
+            <svg
+              id="img-moon"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M479.96-144Q340-144 242-242t-98-238q0-140 97.93-238t237.83-98q13.06 0 25.65 1 12.59 1 25.59 3-39 29-62 72t-23 92q0 85 58.5 143.5T648-446q49 0 92-23t72-62q2 13 3 25.59t1 25.65q0 139.9-98.04 237.83t-238 97.93Zm.04-72q82 0 148.78-47.07Q695.55-310.15 727-386q-20 5-39.67 8.5Q667.67-374 648-374q-113.86 0-193.93-80.07Q374-534.14 374-648q0-19.67 3.5-39.33Q381-707 386-727q-75.85 31.45-122.93 98.22Q216-562 216-480q0 110 77 187t187 77Zm-14-250Z"
+              /></svg
+          ></a>
+        </template>
+      </div>
+
+      <div
+        id="box-wrapper-1"
+        class="flex flex-col"
+      >
+        <div
+          id="box-wrapper-1-1"
+          class="flex flex-col relative"
+        >
+          <!-- logo -->
+          <template x-if="true">
+            <div
+              id="box-logo"
+              class="flex absolute z-0 inset-0"
+            >
+              <img
+                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM6c2VyaWY9Imh0dHA6Ly93d3cuc2VyaWYuY29tLyIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoyOyI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjkyOTc1MiwwLDAsMC45Mjk3NTIsLTcuNzgyMzUsMjkuMTMxNzI5KSI+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoNTAsMCwwLDUwLDExMS4yNDgxMjgsMzkuOTY5OTg1KSI+CiAgICAgICAgPC9nPgogICAgICAgIDx0ZXh0IHg9IjEzLjA5OHB4IiB5PSIzOS45N3B4IiBzdHlsZT0iZm9udC1mYW1pbHk6J0hlbHZldGljYU5ldWUtQm9sZCcsICdIZWx2ZXRpY2EgTmV1ZSc7Zm9udC13ZWlnaHQ6NzAwO2ZvbnQtc2l6ZTo1MHB4O2ZpbGw6cmdiKDEsOTcsODkpOyI+VDx0c3BhbiB4PSIzOC4wOThweCA2Ni43OThweCAiIHk9IjM5Ljk3cHggMzkuOTdweCAiPmVzPC90c3Bhbj50PC90ZXh0PgogICAgPC9nPgo8L3N2Zz4K"
+                alt="Test"
+              />
+            </div>
+          </template>
+
+          <!-- menu -->
+          <template x-if="true">
+            <div
+              id="box-menu"
+              class="flex absolute z-10 bottom-1 inset-x-0 sm:right-1"
+              x-bind:class="showForm ? 'opacity-0 ease-out duration-200' : 'opacity-100 ease-in duration-200 delay-200' && showText ? 'opacity-0 ease-out duration-200' : 'opacity-100 ease-in duration-200 delay-200'"
+            >
+              <a @click="showForm = !showForm">
+                <svg
+                  id="img-mail"
+                  viewBox="0 -960 960 960"
+                >
+                  <path
+                    d="M168-192q-29.7 0-50.85-21.16Q96-234.32 96-264.04v-432.24Q96-726 117.15-747T168-768h624q29.7 0 50.85 21.16Q864-725.68 864-695.96v432.24Q864-234 842.85-213T792-192H168Zm312-240L168-611v347h624v-347L480-432Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z"
+                  />
+                </svg>
+              </a>
+
+              <a @click="showText = !showText"
+                ><svg
+                  id="img-question"
+                  viewBox="0 -960 960 960"
+                >
+                  <path
+                    d="M424-320q0-81 14.5-116.5T500-514q41-36 62.5-62.5T584-637q0-41-27.5-68T480-732q-51 0-77.5 31T365-638l-103-44q21-64 77-111t141-47q105 0 161.5 58.5T698-641q0 50-21.5 85.5T609-475q-49 47-59.5 71.5T539-320H424Zm56 240q-33 0-56.5-23.5T400-160q0-33 23.5-56.5T480-240q33 0 56.5 23.5T560-160q0 33-23.5 56.5T480-80Z"
+                  /></svg
+              ></a>
+            </div>
+          </template>
+
+          <!-- mail form -->
+          <template x-if="true">
+            <div
+              id="box-form"
+              class="absolute z-20 bottom-0 right-0"
+              x-bind:class="showForm ? 'h-full opacity-100 ease-out duration-500' : 'h-0 opacity-50 ease-out duration-500'"
+            >
+              <div
+                id="box-form-wrapper"
+                class="flex flex-col relative"
+              >
+                <div
+                  id="box-form-bg"
+                  class="absolute z-0"
+                ></div>
+
+                <div
+                  class="flex flex-col absolute h-full w-10/12 sm:w-8/12 xl:w-6/12 bottom-1 sm:top-0"
+                >
+                  <div
+                    id="box-form-close"
+                    class="flex invisible sm:visible z-30 h-40 sm:h-32"
+                  >
+                    <a
+                      @click="showForm = !showForm"
+                      x-bind:class="showForm ? 'opacity-100 ease-in duration-200 delay-200' : 'opacity-0 ease-out duration-200'"
+                    >
+                      <svg
+                        id="img-form-close"
+                        viewBox="0 -960 960 960"
+                      >
+                        <path
+                          d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+
+                  <div
+                    id="box-form-form"
+                    class="flex flex-col z-30"
+                  >
+                    <form
+                      class="flex flex-col h-full gap-2 rounded-xl overflow-auto"
+                      action="https://api.web3forms.com/submit"
+                      method="POST"
+                    >
+                      <input
+                        type="hidden"
+                        name="access_key"
+                        value="3ec6ef38-40cd-48aa-8e0c-fe5a9cba3b01"
+                      />
+
+                      <input
+                        type="hidden"
+                        name="Assunto"
+                        value="Test"
+                      />
+
+                      <input
+                        id="field-name"
+                        type="text"
+                        placeholder="Nome"
+                        required
+                      />
+
+                      <input
+                        id="field-email"
+                        type="email"
+                        placeholder="Email"
+                        required
+                      />
+
+                      <textarea
+                        id="field-message"
+                        placeholder="Mensagem"
+                        required
+                      ></textarea>
+
+                      <button
+                        id="button-send"
+                        type="submit"
+                      >
+                        Enviar
+                      </button>
+                    </form>
+                  </div>
+
+                  <div
+                    id="box-form-close"
+                    class="flex visible sm:invisible z-40 h-40 sm:h-20"
+                  >
+                    <a
+                      @click="showForm = !showForm"
+                      x-bind:class="showForm ? 'opacity-100 ease-in duration-200 delay-200' : 'opacity-0 ease-out duration-200'"
+                    >
+                      <svg
+                        id="img-form-close"
+                        viewBox="0 -960 960 960"
+                      >
+                        <path
+                          d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <!-- text -->
+          <template x-if="true">
+            <div
+              id="box-text"
+              class="absolute z-20 bottom-0 right-0"
+              x-bind:class="showText ? 'h-full opacity-100 ease-out duration-500' : 'h-0 opacity-50 ease-out duration-500'"
+            >
+              <div
+                id="box-text-wrapper"
+                class="flex flex-col relative"
+              >
+                <div
+                  id="box-text-bg"
+                  class="absolute z-0"
+                ></div>
+
+                <div
+                  class="flex flex-col absolute h-full w-11/12 bottom-1 sm:top-0"
+                >
+                  <div
+                    id="box-text-close"
+                    class="flex invisible sm:visible z-30 h-10 sm:h-20"
+                  >
+                    <a
+                      @click="showText = !showText"
+                      x-bind:class="showText ? 'opacity-100 ease-in duration-200 delay-200' : 'opacity-0 ease-out duration-200'"
+                    >
+                      <svg
+                        id="img-text-close"
+                        viewBox="0 -960 960 960"
+                      >
+                        <path
+                          d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+
+                  <div
+                    id="box-text-text"
+                    class="flex z-30 overflow-auto"
+                  >
+                    <p id="text-text">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Ipsam labore soluta commodi ea cumque molestias, quia
+                      omnis ducimus voluptatem sapiente nemo perferendis,
+                      possimus eligendi voluptatibus illum cupiditate, expedita
+                      unde quam dolorum aperiam saepe et! Corporis ea at
+                      voluptatum deleniti consectetur harum unde quae esse
+                      perspiciatis fugiat in voluptas eligendi reprehenderit
+                      provident omnis et temporibus eaque aut dolorum nemo
+                      obcaecati, repellendus consequatur. Libero delectus
+                      perspiciatis excepturi deserunt facilis quaerat temporibus
+                      deleniti repellat doloremque? Numquam tenetur sunt itaque
+                      deserunt, corporis, veritatis sint est odio, magni unde
+                      voluptas nesciunt quo! Eos consequuntur, dolor laudantium
+                      repellat nemo facere ea unde quas dolorem. Eaque nulla
+                      ducimus iure praesentium dolore placeat explicabo
+                      dignissimos ab facere molestias laborum consequuntur sit
+                      quod quas suscipit iste velit cumque doloremque veniam
+                      minima laudantium, rerum reiciendis. Maiores laborum
+                      aliquam ipsa quos eveniet autem reprehenderit facere in ex
+                      atque soluta pariatur ut beatae veniam aspernatur
+                      perspiciatis sit molestiae ipsam molestias corporis,
+                      voluptate, hic sed animi. Ab autem tenetur vero
+                      exercitationem cumque veritatis quo eos vitae minus quis
+                      ea facere dolor, earum sint nobis labore sit unde
+                      consequatur quisquam voluptates cum. Eaque obcaecati autem
+                      sint mollitia natus quaerat fuga totam aut sunt. Minima
+                      debitis voluptas quod quis similique cum omnis esse quasi
+                      veniam itaque inventore consequuntur quas modi sit
+                      doloremque quibusdam fugit libero ad consequatur id,
+                      maxime eveniet dignissimos aliquam. Nostrum totam mollitia
+                      sunt laborum recusandae. Veritatis laudantium excepturi
+                      cupiditate repellendus aut eum quam, possimus maxime
+                      accusantium dicta alias delectus at nisi tempore quaerat
+                      incidunt animi odio, eius perspiciatis obcaecati
+                      similique, a sed! Quaerat magni, doloremque illum
+                      cupiditate perspiciatis eum odit! Cumque, atque quos nulla
+                      beatae eveniet sunt architecto optio at eligendi neque quo
+                      ex minima quia odio voluptas repudiandae explicabo
+                      consequuntur perferendis. Quisquam incidunt, saepe minima
+                      omnis in soluta delectus aperiam molestias rem asperiores
+                      fugit voluptate iure animi temporibus neque inventore ex
+                      voluptatem ab enim! Asperiores inventore rem et delectus
+                      veniam dolor nostrum quibusdam quas. Excepturi architecto,
+                      cum quis earum et iusto dolorum pariatur adipisci,
+                      incidunt expedita voluptates beatae nesciunt aspernatur
+                      laborum similique suscipit nulla aut quasi. A deleniti
+                      adipisci nemo ipsa saepe autem ratione minima qui in,
+                      suscipit dolor, quod exercitationem consequuntur tempore
+                      sit molestiae quia optio alias tenetur dolores sequi. At
+                      sit rem nam, incidunt atque ab laborum in. Temporibus
+                      ipsum qui omnis, quis repellendus natus voluptatibus aut,
+                      magnam quae optio sit voluptas commodi! Dolores quae
+                      fugiat voluptatum ducimus id blanditiis quaerat modi
+                      vitae, saepe culpa, dolorum alias quasi illum at
+                      voluptatem necessitatibus sapiente a laboriosam tempora
+                      assumenda quidem nesciunt ad corporis. Possimus modi quis
+                      enim consectetur laboriosam nihil dignissimos voluptatum
+                      ullam voluptatem. Voluptatum omnis iusto reprehenderit
+                      explicabo magnam totam error vero iure officia
+                      voluptatibus quae doloremque nulla quis quisquam
+                      recusandae consequatur, architecto minima et obcaecati,
+                      autem illum? Saepe sunt vitae qui magnam, tenetur
+                      inventore enim perspiciatis suscipit accusamus autem
+                      perferendis, ea quod at illo nostrum quis, corporis nisi
+                      laborum? Facilis asperiores dolores aut tenetur aspernatur
+                      placeat soluta omnis totam possimus commodi perferendis
+                      quaerat eius labore vero voluptatum aliquam reiciendis
+                      delectus laboriosam quibusdam, recusandae, quisquam
+                      eveniet temporibus. In, quod amet..
+                    </p>
+                  </div>
+
+                  <div
+                    id="box-text-close"
+                    class="flex visible sm:invisible z-40 h-20 sm:h-10"
+                  >
+                    <a
+                      @click="showText = !showText"
+                      x-bind:class="showText ? 'opacity-100 ease-in duration-200 delay-200' : 'opacity-0 ease-out duration-200'"
+                    >
+                      <svg
+                        id="img-text-close"
+                        viewBox="0 -960 960 960"
+                      >
+                        <path
+                          d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- footer -->
+        <template x-if="true">
+          <div
+            id="box-footer"
+            class="flex"
+          >
+            <span id="text-footer">Todos os direitos reservados.</span>
+          </div>
+        </template>
+      </div>
+    </div>
+
+  </body>
+</html>
